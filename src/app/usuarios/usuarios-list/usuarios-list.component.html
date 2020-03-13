@@ -25,6 +25,7 @@
                     <td>
                         <button (click)="delete(user.id)" href="#"> Deletar </button>
                         <button [routerLink]="['ver', user.id]" href="#"> Ver </button>
+                        <button [routerLink]="['editar', user.id]" href="#"> Editar </button>
                     </td>
                 </tr>
             </tbody>

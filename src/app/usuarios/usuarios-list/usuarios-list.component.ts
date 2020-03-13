@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { UsuarioDTO } from '../models/usuarioDTO.entity';
+import { UsuarioMockService } from '../service/usuariomock.service';
 
 @Component({
     selector: 'app-usuarios-list',
@@ -10,9 +11,9 @@ import { UsuarioDTO } from '../models/usuarioDTO.entity';
 export class UsuariosListComponent implements OnInit {
 
     loading: boolean = true;
-    users: UsuarioDTO[] = [];
+    users: Array<UsuarioDTO>;
 
-    constructor(private service: UsuarioService) { }
+    constructor(private service: UsuarioMockService) { }
 
     ngOnInit() {
         this.list();

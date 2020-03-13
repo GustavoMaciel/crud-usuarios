@@ -3,6 +3,7 @@ import { UsuarioService } from '../service/usuario.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioDTO } from '../models/usuarioDTO.entity';
+import { UsuarioMockService } from '../service/usuariomock.service';
 
 @Component({
     selector: 'app-usuario-create',
@@ -14,7 +15,7 @@ export class UsuarioCreateComponent implements OnInit {
     private formGroup: FormGroup;
     private submitted: boolean = false;
 
-    constructor(private service: UsuarioService, private formBuilder: FormBuilder, private route: Router) { }
+    constructor(private service: UsuarioMockService, private formBuilder: FormBuilder, private route: Router) { }
 
     ngOnInit() {
         this.generateForm();

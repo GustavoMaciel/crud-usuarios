@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioDTO } from '../models/usuarioDTO.entity';
+import { ActivatedRoute } from '@angular/router';
+import { UsuarioMockService } from '../service/usuariomock.service';
 
 @Component({
   selector: 'app-usuario-ver',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioVerComponent implements OnInit {
 
-  constructor() { }
+  public usuario : UsuarioDTO;
+
+  constructor(private route: ActivatedRoute, private service: UsuarioMockService) { }
 
   ngOnInit() {
+    let id : number = +this.route.snapshot.params["id"];
+    this.service.getById(id).subscribe(usuario => {
+      this.usuario = usuario;
+    }) 
   }
 
 }

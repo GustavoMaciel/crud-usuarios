@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IUsuarioService } from './iusuario.service';
 import { UsuarioDTO } from '../models/usuarioDTO.entity';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -23,12 +23,22 @@ export class UsuarioMockService implements IUsuarioService {
             }
         );
     }
-    getById(id: number): Observable<any> {
-        throw new Error("Method not implemented.");
+    getById(id: number): Observable<UsuarioDTO> {
+        let usuarioDTO: Observable<UsuarioDTO> = null;
+        console.log(this.usuarios);
+        this.usuarios.forEach(element => {
+            if(element.id == id){
+                usuarioDTO = new Observable<UsuarioDTO>(obs=>{
+                    obs.next(element);
+                    obs.complete();
+                });
+            }            
+        });
+        return usuarioDTO;
     }
-    insert(usuario: any): Observable<any> {
-        this.usuarios.push(usuario);
+    insert(usuario: UsuarioDTO): Observable<UsuarioDTO> {
         usuario.id = ++this.lastId;
+        this.usuarios.push(usuario);
         return new Observable<any> (
             (obs) => {
                 obs.next(usuario);
@@ -50,6 +60,22 @@ export class UsuarioMockService implements IUsuarioService {
                 obs.complete();
             }
         );
+    }
+
+    update(usuario: UsuarioDTO): Observable<UsuarioDTO>{
+
+        let aux: Observable<UsuarioDTO> = null;
+
+        this.usuarios.forEach(element => {
+            if (element.id == usuario.id){
+                element.name = usuario.name;
+                element.email = usuario.email;
+                aux = new Observable<UsuarioDTO>(obs => {
+                    obs.next(element);
+                });
+            }
+        });
+        return aux;
     }
 
     constructor() { }
