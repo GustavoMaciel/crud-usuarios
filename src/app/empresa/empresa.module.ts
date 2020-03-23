@@ -6,11 +6,12 @@ import { EmpresaCriarComponent } from './empresa-criar/empresa-criar.component';
 import { EmpresaEditarComponent } from './empresa-editar/empresa-editar.component';
 import { EmpresaListarComponent } from './empresa-listar/empresa-listar.component';
 import { EmpresaMockService } from './service/empresa.mock.service';
+import { EmpresaVerComponent } from './empresa-ver/empresa-ver.component';
 
 
 
 @NgModule({
-  declarations: [EmpresaCriarComponent, EmpresaEditarComponent, EmpresaListarComponent],
+  declarations: [EmpresaCriarComponent, EmpresaEditarComponent, EmpresaListarComponent, EmpresaVerComponent],
   imports: [
     CommonModule,
     FormsModule,
