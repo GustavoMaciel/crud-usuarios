@@ -4,11 +4,21 @@ export class EmpresaDTO {
     id: number;
     cnpj: string;
     nomeFantasia: string;
+    razaoSocial: string;
+    missao: string;
+    visao: string;
+
+
     funcionarios: Array<UsuarioDTO>;
 
-    constructor(id: number, cnpj: string, nomeFantasia: string) {
+    constructor(id: number, cnpj: string, nomeFantasia: string,
+        razaoSocial: string, missao: string, visao: string, funcionarios: Array<UsuarioDTO>) {
         this.id = id;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+        this.missao = missao;
+        this.visao = visao;
+        this.funcionarios = funcionarios;
     }
 }
