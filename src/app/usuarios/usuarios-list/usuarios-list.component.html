@@ -23,9 +23,9 @@
                     <td> {{ user.name }} </td>
                     <td> {{ user.email }} </td>
                     <td>
-                        <button (click)="delete(user.id)" href="#"> Deletar </button>
-                        <button [routerLink]="['ver', user.id]" href="#"> Ver </button>
-                        <button [routerLink]="['editar', user.id]" href="#"> Editar </button>
+                      <button class="btn btn-primary mr-2" (click)="view(user.id)">Visualizar</button>
+                      <button class="btn btn-dark mr-2" (click)="edit(user.id)">Editar</button>
+                      <button class="btn btn-danger" (click)="delete(user.id)"> Deletar </button>
                     </td>
                 </tr>
             </tbody>

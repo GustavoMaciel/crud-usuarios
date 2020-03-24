@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { UsuarioDTO } from '../models/usuarioDTO.entity';
 import { UsuarioMockService } from '../service/usuariomock.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-usuarios-list',
@@ -13,7 +14,7 @@ export class UsuariosListComponent implements OnInit {
     loading: boolean = true;
     users: Array<UsuarioDTO>;
 
-    constructor(private service: UsuarioMockService) { }
+    constructor(private service: UsuarioService, private router: Router) { }
 
     ngOnInit() {
         this.list();
@@ -40,6 +41,14 @@ export class UsuariosListComponent implements OnInit {
             }
         );
         return false;
+    }
+
+    view(id: number) {
+        this.router.navigate(["usuarios", "view", id]);
+    }
+
+    edit(id: number) {
+        this.router.navigate(["usuarios", "edit", id]);
     }
 
 }

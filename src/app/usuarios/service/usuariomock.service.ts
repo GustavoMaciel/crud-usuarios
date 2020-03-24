@@ -15,7 +15,7 @@ export class UsuarioMockService implements IUsuarioService {
 
     lastId: number = 2;
 
-    list(): Observable<any> {
+    list(): Observable<Array<UsuarioDTO>> {
         return new Observable<any>(
             (obs) => {
                 obs.next(this.usuarios);
@@ -23,6 +23,7 @@ export class UsuarioMockService implements IUsuarioService {
             }
         );
     }
+
     getById(id: number): Observable<UsuarioDTO> {
         let usuarioDTO: Observable<UsuarioDTO> = null;
         console.log(this.usuarios);
@@ -36,7 +37,23 @@ export class UsuarioMockService implements IUsuarioService {
         });
         return usuarioDTO;
     }
+  
+    update(usuario: UsuarioDTO): Observable<UsuarioDTO> {
+        let oldUser = this.usuarios
+        .filter(user => user.id == usuario.id)
+        .pop();
+
+        Object.assign(oldUser, usuario);
+
+        return new Observable<UsuarioDTO>((obs) => {
+            obs.next(usuario);
+            obs.complete();
+        });
+    }
+
+
     insert(usuario: UsuarioDTO): Observable<UsuarioDTO> {
+        this.usuarios.push(usuario);
         usuario.id = ++this.lastId;
         this.usuarios.push(usuario);
         return new Observable<any> (
@@ -46,6 +63,7 @@ export class UsuarioMockService implements IUsuarioService {
             }
         );
     }
+  
     delete(id: number): Observable<any> {
         const aux: UsuarioDTO[] = []
         this.usuarios.forEach((user) => {
