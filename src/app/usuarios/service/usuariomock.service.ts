@@ -33,11 +33,11 @@ export class UsuarioMockService implements IUsuarioService {
                     obs.next(element);
                     obs.complete();
                 });
-            }            
+            }
         });
         return usuarioDTO;
     }
-  
+
     update(usuario: UsuarioDTO): Observable<UsuarioDTO> {
         let oldUser = this.usuarios
         .filter(user => user.id == usuario.id)
@@ -51,7 +51,6 @@ export class UsuarioMockService implements IUsuarioService {
         });
     }
 
-
     insert(usuario: UsuarioDTO): Observable<UsuarioDTO> {
         this.usuarios.push(usuario);
         usuario.id = ++this.lastId;
@@ -63,7 +62,7 @@ export class UsuarioMockService implements IUsuarioService {
             }
         );
     }
-  
+
     delete(id: number): Observable<any> {
         const aux: UsuarioDTO[] = []
         this.usuarios.forEach((user) => {
@@ -71,29 +70,13 @@ export class UsuarioMockService implements IUsuarioService {
                 aux.push(user);
             }
         });
-        this.usuarios = aux;        
+        this.usuarios = aux;
         return new Observable<any>(
             (obs) => {
                 obs.next(true);
                 obs.complete();
             }
         );
-    }
-
-    update(usuario: UsuarioDTO): Observable<UsuarioDTO>{
-
-        let aux: Observable<UsuarioDTO> = null;
-
-        this.usuarios.forEach(element => {
-            if (element.id == usuario.id){
-                element.name = usuario.name;
-                element.email = usuario.email;
-                aux = new Observable<UsuarioDTO>(obs => {
-                    obs.next(element);
-                });
-            }
-        });
-        return aux;
     }
 
     constructor() { }
