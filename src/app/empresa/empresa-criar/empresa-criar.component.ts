@@ -53,11 +53,15 @@ export class EmpresaCriarComponent implements OnInit {
 
     this.service.insert(empresa).subscribe(
         result => {
-            this.route.navigate(['/empresa']);
+            this.route.navigate(['/empresas']);
         }, err => {
 
         }
     );
+  }
+
+  onReset() {
+    this.route.navigate(['/empresas']);
   }
 
 }
